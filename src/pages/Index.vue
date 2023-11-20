@@ -12,12 +12,19 @@ import {
 
 const opt = useOption();
 const isOpen = ref(true);
+const pdfELement = ref();
 
 function closeModal() {
   isOpen.value = false;
 }
 function openModal() {
   isOpen.value = true;
+}
+
+function generateReportPrint() {
+  // pdfELement.value.window.print();
+  window.print();
+  // console.log(pdfELement.value);
 }
 
 function generateReport() {
@@ -67,6 +74,7 @@ const user = ref({
 <template>
   <main class="min-h-screen bg-gray-100 text-gray-800">
     <div
+      ref="pdfELement"
       id="element-to-convert"
       class="max-w-[768px] mx-auto bg-white min-h-screen p-8"
     >
@@ -269,6 +277,27 @@ const user = ref({
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M12 6v12m6-6H6"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="mb-4">
+        <button
+          @click="generateReportPrint()"
+          class="bg-primary p-4 text-white rounded-full hover:brightness-110"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25"
             />
           </svg>
         </button>
