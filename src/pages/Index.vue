@@ -33,7 +33,27 @@ function generateReport() {
     filename: "i-was-html.pdf",
   });
 }
+
+function changePhoto(event) {
+  const files = event.target.files;
+  if (files) {
+    Array.from(files).forEach((file, index) => {
+      if (!file.type.startsWith("image/")) {
+        console.error(`File at index ${index} is not an image.`);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        // modelImage.value = file;
+        user.value.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+}
+
 const user = ref({
+  image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
   address: "Bojonegoro",
@@ -81,7 +101,7 @@ const user = ref({
       <section class="flex items-center">
         <div class="pr-10 pl-5">
           <img
-            src="/profile.jpg"
+            :src="user.image"
             class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full"
           />
         </div>
@@ -235,6 +255,14 @@ const user = ref({
                       </div>
                       <div v-else>
                         <input
+                          v-if="index == 'image'"
+                          @change="changePhoto($event)"
+                          type="file"
+                          class="w-full border px-4 py-1"
+                        />
+
+                        <input
+                          v-else
                           v-model="user[index]"
                           type="text"
                           class="w-full border px-4 py-1"
@@ -297,7 +325,7 @@ const user = ref({
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25"
+              d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z"
             />
           </svg>
         </button>
