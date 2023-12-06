@@ -11,6 +11,14 @@ const routes = [
     component: () => import("@/pages/Index.vue"),
   },
   {
+    path: "/builder",
+    name: "Builder",
+    meta: {
+      public: true,
+    },
+    component: () => import("@/pages/builder.vue"),
+  },
+  {
     path: "/admin",
     name: "Admin",
     meta: {
