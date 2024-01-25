@@ -75,46 +75,24 @@ const tmp_img = ref(null);
 const user = ref({
   setting: {
     skill: "Skill",
-    educational: "educational",
-    experienced: "experienced",
+    pendidikan: "pendidikan",
+    pengalaman: "pengalaman",
     portofolio: "portofolio",
   },
   image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
-  address: "Based in Bojonegoro",
+  address: "Tinggal di Bojonegoro",
   email: "examplemail123@gmail.com",
-  job: "Fullstack Developer",
-  skill_1: [
-    "Frontend: Vue.js, Tailwind CSS",
-    "Backend: Laravel, Node js",
-    "Version Control: Git",
-    "RESTful API Development",
-    "Responsive Web Design",
-    "Cross-Browser Compatibility",
-    "Problem Solving and Troubleshooting",
+  pekerjaan: "Fullstack Developer",
+  skill_1: ["Office Tool (Excel, Word, Powepoint)"],
+  skill_2: ["HTML CSS PHP MySQL Dasar"],
+  pendidikan: [
+    "Teknik Elektronika di SMK N 2 Bojonegoro",
+    "Sarjana Strata 1 Teknik Informatika di Universitas Nahdlatul Ulama Sunan Giri Bojonegoro",
   ],
-  skill_2: [
-    "Frontend: Vue.js, Tailwind CSS",
-    "Backend: Laravel, Node js",
-    "Version Control: Git",
-    "RESTful API Development",
-    "Responsive Web Design",
-    "Cross-Browser Compatibility",
-    "Problem Solving and Troubleshooting",
-  ],
-  educational: [
-    "Vocational School Electronics Engineering in SMK N 2 Bojonegoro",
-    "Bachelor's degree in Informatics Engineering in Universitas Nahdlatul Ulama Sunan Giri Bojonegoro",
-  ],
-  experienced: [
-    "Vocational School Electronics Engineering in SMK N 2 Bojonegoro",
-    "Bachelor's degree in Informatics Engineering in Universitas Nahdlatul Ulama Sunan Giri Bojonegoro",
-  ],
-  portofolio: [
-    "Making some Project like Hello World with Lorem Ipsum Dolor sit amet",
-    "Making some Project like Hello World with Lorem Ipsum Dolor sit amet",
-  ],
+  pengalaman: ["Mengikuti Coding Bootcamp"],
+  portofolio: ["Isi terserah"],
 });
 </script>
 <template>
@@ -141,7 +119,7 @@ const user = ref({
           <div class="pt-4 text-xs lg:text-base">
             <div>{{ user.address }}</div>
             <div class="font-semibold">{{ user.email }}</div>
-            <div class="text-primary font-bold">{{ user.job }}</div>
+            <div class="text-primary font-bold">{{ user.pekerjaan }}</div>
           </div>
         </div>
       </section>
@@ -164,12 +142,12 @@ const user = ref({
       <section class="mt-8">
         <div class="border-b border-current pb-1">
           <div class="font-bold text-lg uppercase">
-            {{ user.setting?.educational }}
+            {{ user.setting?.pendidikan }}
           </div>
         </div>
         <div class="pt-4">
           <div>
-            <div v-for="(item, index) in user.educational">
+            <div v-for="(item, index) in user.pendidikan">
               {{ index + 1 }}. {{ item }}
             </div>
           </div>
@@ -179,12 +157,12 @@ const user = ref({
       <section class="mt-8">
         <div class="border-b border-current pb-1">
           <div class="font-bold text-lg uppercase">
-            {{ user.setting?.experienced }}
+            {{ user.setting?.pengalaman }}
           </div>
         </div>
         <div class="pt-4">
           <div>
-            <div v-for="(item, index) in user.experienced">
+            <div v-for="(item, index) in user.pengalaman">
               {{ index + 1 }}. {{ item }}
             </div>
           </div>
