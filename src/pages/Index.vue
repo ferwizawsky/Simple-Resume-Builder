@@ -32,7 +32,9 @@ async function generateReportPrint() {
   };
   tmp.image = null;
   fm.append("content", JSON.stringify(tmp));
-  fm.append("image", tmp_img.value);
+  if (tmp_img.value) {
+    fm.append("image", tmp_img.value);
+  }
   try {
     const response = await axios({
       method: "POST",
@@ -71,10 +73,12 @@ function changePhoto(event) {
   }
 }
 
-const tmp_img = ref(null);
+const tmp_img = ref();
 const user = ref({
   setting: {
-    skill: "Skill",
+    tentang: "Tentang Saya",
+    skill: "Hard Skill",
+    skill2: "Soft Skill",
     pendidikan: "pendidikan",
     pengalaman: "pengalaman",
     portofolio: "portofolio",
@@ -82,16 +86,40 @@ const user = ref({
   image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
-  address: "Tinggal di Bojonegoro",
+  address: "Tinggal di Padang, Sumatera Barat",
+  phone: "+62812345678",
   email: "examplemail123@gmail.com",
-  pekerjaan: "Fullstack Developer",
-  skill_1: ["Office Tool (Excel, Word, Powepoint)"],
-  skill_2: ["HTML CSS PHP MySQL Dasar"],
-  pendidikan: [
-    "Teknik Elektronika di SMK N 2 Bojonegoro",
-    "Sarjana Strata 1 Teknik Informatika di Universitas Nahdlatul Ulama Sunan Giri Bojonegoro",
+  tentang:
+    "Saya adalah lulusan Manajemen Informatika dengan keterampilan analisis data dan kemampuan komunikasi yang baik. Saya paham betul mengenai manajemen dokumen dan keakuratan dalam pekerjaan. Dengan keahlian menggunakan Microsoft Office, saya siap memberikan kontribusi positif pada tim dan organisasi Anda. Terima kasih atas perhatian Anda. ",
+  pekerjaan: "Fresh Graduate Manajemen Informatika",
+  skill_1: [
+    "HTML CSS PHP SQL Dasar",
+    "Microsoft Word",
+    "Microsoft Excel",
+    "Microsoft PowerPoint",
   ],
-  pengalaman: ["Mengikuti Coding Bootcamp"],
+  skill_2: [
+    "Kemampuan Komunikasi",
+    "Orientasi Pelayanan Pelanggan",
+    "Kemampuan Menyelesaikan Masalah",
+    "Kerjasama Tim",
+    "Manajemen Waktu",
+    "Keahlian Manajemen Dokumen",
+    "Disiplin dan Kehati-hatian",
+    "Etika Profesional",
+  ],
+  pendidikan: [
+    "Lulus dari Jurusan IPS di SMA N 1 Tanjung mutiara (2021)",
+    "Program Studi D.3 Manajemen Informatika di Politeknik Negeri Padang (Masih mengerjakan Tugas Akhir)",
+  ],
+  pengalaman: [
+    "Magang di PT KAI, fokus pada Unit Dokumen, dengan jobdesk Rekap Surat, disposisi surat, buat absensi rapat dan sejenisnya.",
+    "Bertanggung jawab dalam pengelolaan dan rekapitulasi surat-menyurat perusahaan.",
+    "Mengasah keterampilan manajemen dokumen dan ketelitian dalam pekerjaan sehari-hari.",
+    "Berpartisipasi aktif dalam kerjasama tim untuk mencapai efisiensi operasional.",
+    "Merancang dan menyampaikan presentasi menggunakan PowerPoint selama studi akademis.",
+    "Menggunakan Excel untuk menganalisis data dalam proyek kuliah.",
+  ],
   portofolio: ["Isi terserah"],
 });
 </script>
@@ -118,23 +146,52 @@ const user = ref({
           </div>
           <div class="pt-4 text-xs lg:text-base">
             <div>{{ user.address }}</div>
-            <div class="font-semibold">{{ user.email }}</div>
+            <div class="font-medium flex items-center">{{ user.phone }}</div>
+            <div class="font-semibold flex items-center">{{ user.email }}</div>
             <div class="text-primary font-bold">{{ user.pekerjaan }}</div>
           </div>
         </div>
       </section>
+
+      <section class="mt-8">
+        <div class="border-b border-current pb-1">
+          <div class="font-bold text-lg uppercase">
+            {{ user.setting?.tentang }}
+          </div>
+        </div>
+        <div class="pt-4">
+          <div>
+            {{ user.tentang }}
+          </div>
+        </div>
+      </section>
+
       <section class="mt-8">
         <div class="border-b border-current pb-1">
           <div class="font-bold text-lg uppercase">
             {{ user.setting?.skill }}
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-4 pt-4">
+        <div class="pt-4">
           <div>
-            <div v-for="item in user.skill_1">* {{ item }}</div>
+            <div v-for="item in user.skill_1">
+              <span class="font-bold">*</span> {{ item }}
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <div class="border-b border-current pb-1">
+          <div class="font-bold text-lg uppercase">
+            {{ user.setting?.skill2 }}
+          </div>
+        </div>
+        <div class="pt-4">
           <div>
-            <div v-for="(item, index) in user.skill_2">* {{ item }}</div>
+            <div v-for="item in user.skill_2">
+              <span class="font-bold">*</span> {{ item }}
+            </div>
           </div>
         </div>
       </section>
@@ -169,7 +226,7 @@ const user = ref({
         </div>
       </section>
 
-      <section class="mt-8">
+      <section class="mt-8 hidden">
         <div class="border-b border-current pb-1">
           <div class="font-bold text-lg uppercase">
             {{ user.setting?.portofolio }}
