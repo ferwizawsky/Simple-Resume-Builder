@@ -92,7 +92,7 @@ const user = ref({
   image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
-  address: "Bojonegoro",
+  address: "Based in Bojonegoro",
   email: "examplemail123@gmail.com",
   job: "Fullstack Developer",
   skill_1: [
@@ -162,7 +162,7 @@ const user = ref({
             <span>{{ user.last_name }}</span>
           </div>
           <div class="pt-4 text-xs lg:text-base">
-            <div>Based in {{ user.address }}</div>
+            <div>{{ user.address }}</div>
             <div class="font-semibold">{{ user.email }}</div>
             <div class="text-primary font-bold">{{ user.job }}</div>
           </div>

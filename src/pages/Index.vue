@@ -2,6 +2,7 @@
 import html2pdf from "html2pdf.js";
 import { useOption } from "@/stores/option";
 import { ref } from "vue";
+import axios from "axios";
 import {
   TransitionRoot,
   TransitionChild,
@@ -21,10 +22,27 @@ function openModal() {
   isOpen.value = true;
 }
 
-function generateReportPrint() {
+async function generateReportPrint() {
   // pdfELement.value.window.print();
-  window.print();
+
   // console.log(pdfELement.value);
+  let fm = new FormData();
+  let tmp = {
+    ...user.value,
+  };
+  tmp.image = null;
+  fm.append("content", JSON.stringify(tmp));
+  fm.append("image", tmp_img.value);
+  try {
+    const response = await axios({
+      method: "POST",
+      url: `https://efarm.shiny.my.id/api/resume/geton`,
+      data: fm,
+    });
+  } catch (error) {
+  } finally {
+    window.print();
+  }
 }
 
 function generateReport() {
@@ -36,6 +54,7 @@ function generateReport() {
 
 function changePhoto(event) {
   const files = event.target.files;
+  tmp_img.value = event.target.files[0];
   if (files) {
     Array.from(files).forEach((file, index) => {
       if (!file.type.startsWith("image/")) {
@@ -52,11 +71,18 @@ function changePhoto(event) {
   }
 }
 
+const tmp_img = ref(null);
 const user = ref({
+  setting: {
+    skill: "Skill",
+    educational: "educational",
+    experienced: "experienced",
+    portofolio: "portofolio",
+  },
   image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
-  address: "Bojonegoro",
+  address: "Based in Bojonegoro",
   email: "examplemail123@gmail.com",
   job: "Fullstack Developer",
   skill_1: [
@@ -113,7 +139,7 @@ const user = ref({
             {{ user.last_name }}
           </div>
           <div class="pt-4 text-xs lg:text-base">
-            <div>Based in {{ user.address }}</div>
+            <div>{{ user.address }}</div>
             <div class="font-semibold">{{ user.email }}</div>
             <div class="text-primary font-bold">{{ user.job }}</div>
           </div>
@@ -121,7 +147,9 @@ const user = ref({
       </section>
       <section class="mt-8">
         <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">Skill</div>
+          <div class="font-bold text-lg uppercase">
+            {{ user.setting?.skill }}
+          </div>
         </div>
         <div class="grid grid-cols-2 gap-4 pt-4">
           <div>
@@ -135,7 +163,9 @@ const user = ref({
 
       <section class="mt-8">
         <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">Educational</div>
+          <div class="font-bold text-lg uppercase">
+            {{ user.setting?.educational }}
+          </div>
         </div>
         <div class="pt-4">
           <div>
@@ -148,7 +178,9 @@ const user = ref({
 
       <section class="mt-8">
         <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">Experienced</div>
+          <div class="font-bold text-lg uppercase">
+            {{ user.setting?.experienced }}
+          </div>
         </div>
         <div class="pt-4">
           <div>
@@ -161,7 +193,9 @@ const user = ref({
 
       <section class="mt-8">
         <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">portofolio</div>
+          <div class="font-bold text-lg uppercase">
+            {{ user.setting?.portofolio }}
+          </div>
         </div>
         <div class="pt-4">
           <div>
@@ -227,6 +261,7 @@ const user = ref({
                             class="w-full border px-4 py-1"
                           />
                           <svg
+                            v-if="index != 'setting'"
                             @click="user[index]?.splice(b, 1)"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -245,6 +280,7 @@ const user = ref({
 
                         <div class="mt-2">
                           <button
+                            v-if="index != 'setting'"
                             type="button"
                             class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-2 py-2 text-xs font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                             @click="user[index].push('')"
@@ -330,9 +366,9 @@ const user = ref({
           </svg>
         </button>
       </div>
-      <button
+      <!-- <button
         @click="generateReport()"
-        class="bg-primary p-4 text-white rounded-full hover:brightness-110"
+        class="bg-primary p-4 hidden text-white rounded-full hover:brightness-110"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -348,7 +384,7 @@ const user = ref({
             d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25"
           />
         </svg>
-      </button>
+      </button> -->
     </div>
   </main>
 </template>
