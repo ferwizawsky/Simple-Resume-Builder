@@ -29,3 +29,11 @@
     @apply p-4 rounded-b-xl rounded-l-xl;
   }
 }
+.helping-bar {
+  @apply fixed bottom-4 right-4;
+}
+@media print { body { -webkit-print-color-adjust: exact; } 
+.helping-bar {
+  @apply hidden;
+}
+}
