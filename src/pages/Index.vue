@@ -125,16 +125,16 @@ const user = ref({
 });
 </script>
 <template>
-  <main class="min-h-screen bg-zinc-100 text-zinc-700 font-thin">
+  <main class="min-h-screen xl:bg-zinc-100 text-zinc-900 font-thin">
     <div
       ref="pdfELement"
       id="element-to-convert"
-      class="max-w-[768px] mx-auto bg-white min-h-screen p-4"
+      class="max-w-[768px] mx-auto bg-white min-h-screen p-4 text-xs xl:text-base"
     >
       <section class="flex items-center p-4">
-        <div class="pr-10 pl-5 relative">
+        <div class="pl-5 relative">
           <svg
-            class="w-[90px] absolute top-1 left-1 rotate-[320deg]"
+            class="w-[70px] absolute top-1 left-1 rotate-[320deg]"
             viewBox="0 0 305 609"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -150,13 +150,13 @@ const user = ref({
             class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full relative"
           />
         </div>
-        <div class="grow">
-          <div class="uppercase text-3xl font-semibold">
+        <div class="grow pl-5">
+          <div class="uppercase text-2xl font-semibold">
             {{ user.first_name }}
           </div>
           <div
             v-if="user.last_name"
-            class="uppercase text-3xl font-semibold text-gray-500 -mt-2"
+            class="uppercase text-2xl font-semibold text-gray-500 -mt-2"
           >
             {{ user.last_name }}
           </div>
@@ -164,9 +164,11 @@ const user = ref({
         </div>
       </section>
 
-      <section class="mt-8 p-4">
+      <section class="mt-4 p-4">
         <div class="pb-1">
-          <div class="font-medium tracking-widest text-lg uppercase">
+          <div
+            class="font-medium tracking-widest text-base lg:text-lg uppercase"
+          >
             <button
               class="px-6 flex uppercase items-center bg-lime-600/50 py-1 rounded-full text-white"
             >
@@ -196,27 +198,25 @@ const user = ref({
           </div>
         </div>
       </section>
-      <div class="grid grid-cols-2 gap-4 pt-8">
+
+      <div class="grid grid-cols-2 gap-0 lg:gap-4">
         <div>
           <section>
             <div class="pb-1 bg-amber-600/10 cardia-top-r">
-              <div class="font-bold text-lg uppercase">
+              <div class="font-bold text-base lg:text-lg uppercase">
                 {{ user.setting?.skill }}
               </div>
             </div>
             <div class="cardia-body-r bg-amber-600/10">
               <div>
-                <div
-                  v-for="item in user.skill_1"
-                  class="flex items-center flex-wrap"
-                >
+                <div v-for="item in user.skill_1" class="flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="3"
                     stroke="currentColor"
-                    class="w-3 h-3 mr-2 text-amber-600/60"
+                    class="w-3 h-3 mr-2 text-amber-600/60 flex-none"
                   >
                     <path
                       stroke-linecap="round"
@@ -224,7 +224,7 @@ const user = ref({
                       d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
                     />
                   </svg>
-                  {{ item }}
+                  <div class="grow">{{ item }}</div>
                 </div>
               </div>
             </div>
@@ -232,23 +232,20 @@ const user = ref({
 
           <section class="mt-4">
             <div class="pb-1 bg-lime-600/10 cardia-top-r">
-              <div class="font-bold text-lg uppercase">
+              <div class="font-bold text-base lg:text-lg uppercase">
                 {{ user.setting?.skill2 }}
               </div>
             </div>
             <div class="cardia-body-r bg-lime-600/10">
               <div>
-                <div
-                  v-for="item in user.skill_2"
-                  class="flex items-center flex-wrap"
-                >
+                <div v-for="item in user.skill_2" class="flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="3"
                     stroke="currentColor"
-                    class="w-3 h-3 mr-2 text-lime-600/60"
+                    class="w-3 h-3 mr-2 text-lime-600/60 flex-none"
                   >
                     <path
                       stroke-linecap="round"
@@ -256,7 +253,7 @@ const user = ref({
                       d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
                     />
                   </svg>
-                  {{ item }}
+                  <div class="grow">{{ item }}</div>
                 </div>
               </div>
             </div>
@@ -266,7 +263,9 @@ const user = ref({
         <div class="">
           <section>
             <div class="pb-1 cardia-top">
-              <div class="font-bold text-lg text-lime-600/70 uppercase">
+              <div
+                class="font-bold text-base lg:text-lg text-lime-600/70 uppercase"
+              >
                 {{ user.setting?.contact }}
               </div>
             </div>
@@ -290,7 +289,9 @@ const user = ref({
 
           <section class="mt-4">
             <div class="pb-1 cardia-top">
-              <div class="font-bold text-lg uppercase text-lime-600/70">
+              <div
+                class="font-bold text-base lg:text-lg uppercase text-lime-600/70"
+              >
                 {{ user.setting?.pendidikan }}
               </div>
             </div>
@@ -355,7 +356,7 @@ const user = ref({
 
       <section class="mt-4 hidden">
         <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">
+          <div class="font-bold text-base lg:text-lg uppercase">
             {{ user.setting?.portofolio }}
           </div>
         </div>
