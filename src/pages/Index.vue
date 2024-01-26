@@ -25,26 +25,7 @@ function openModal() {
 async function generateReportPrint() {
   // pdfELement.value.window.print();
 
-  // console.log(pdfELement.value);
-  let fm = new FormData();
-  let tmp = {
-    ...user.value,
-  };
-  tmp.image = null;
-  fm.append("content", JSON.stringify(tmp));
-  if (tmp_img.value) {
-    fm.append("image", tmp_img.value);
-  }
-  try {
-    const response = await axios({
-      method: "POST",
-      url: `https://efarm.shiny.my.id/api/resume/geton`,
-      data: fm,
-    });
-  } catch (error) {
-  } finally {
-    window.print();
-  }
+  window.print();
 }
 
 function generateReport() {
