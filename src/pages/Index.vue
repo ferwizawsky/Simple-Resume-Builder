@@ -125,7 +125,7 @@ const user = ref({
 });
 </script>
 <template>
-  <main class="min-h-screen xl:bg-zinc-100 text-zinc-900 font-thin">
+  <main class="min-h-screen lg:bg-zinc-100 text-zinc-900">
     <div
       ref="pdfELement"
       id="element-to-convert"
@@ -147,7 +147,7 @@ const user = ref({
 
           <img
             :src="user.image"
-            class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full relative"
+            class="w-24 h-24 object-cover rounded-full relative"
           />
         </div>
         <div class="grow pl-5">
