@@ -76,22 +76,23 @@ function changePhoto(event) {
 const tmp_img = ref();
 const user = ref({
   setting: {
-    tentang: "Tentang Saya",
+    tentang: "Tentang",
     skill: "Hard Skill",
     skill2: "Soft Skill",
     pendidikan: "pendidikan",
     pengalaman: "pengalaman",
     portofolio: "portofolio",
+    contact: "contact",
   },
   image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
-  address: "Tinggal di Padang, Sumatera Barat",
+  address: "Padang, Sumatera Barat",
   phone: "+62812345678",
   email: "examplemail123@gmail.com",
   tentang:
     "Saya adalah lulusan Manajemen Informatika dengan keterampilan analisis data dan kemampuan komunikasi yang baik. Saya paham betul mengenai manajemen dokumen dan keakuratan dalam pekerjaan. Dengan keahlian menggunakan Microsoft Office, saya siap memberikan kontribusi positif pada tim dan organisasi Anda. Terima kasih atas perhatian Anda. ",
-  pekerjaan: "Fresh Graduate Manajemen Informatika",
+  pekerjaan: "Mahasiswa Manajemen Informatika",
   skill_1: [
     "HTML CSS PHP SQL Dasar",
     "Microsoft Word",
@@ -124,11 +125,11 @@ const user = ref({
 });
 </script>
 <template>
-  <main class="min-h-screen bg-gray-100 text-gray-800">
+  <main class="min-h-screen bg-zinc-100 text-zinc-700 font-thin">
     <div
       ref="pdfELement"
       id="element-to-convert"
-      class="max-w-[768px] mx-auto bg-white min-h-screen p-8"
+      class="max-w-[768px] mx-auto bg-white min-h-screen p-4"
     >
       <section class="flex items-center">
         <div class="pr-10 pl-5">
@@ -138,86 +139,113 @@ const user = ref({
           />
         </div>
         <div class="grow">
-          <div class="uppercase text-2xl font-semibold">
+          <div class="uppercase text-3xl font-semibold">
             {{ user.first_name }}
           </div>
-          <div class="uppercase text-2xl font-semibold text-gray-500 -mt-2">
+          <div
+            v-if="user.last_name"
+            class="uppercase text-3xl font-semibold text-gray-500 -mt-2"
+          >
             {{ user.last_name }}
           </div>
-          <div class="pt-4 text-xs lg:text-base">
-            <div>{{ user.address }}</div>
-            <div class="font-medium flex items-center">{{ user.phone }}</div>
-            <div class="font-semibold flex items-center">{{ user.email }}</div>
-            <div class="text-primary font-bold">{{ user.pekerjaan }}</div>
-          </div>
+          <div class="tracking-wide uppercase">{{ user.pekerjaan }}</div>
         </div>
       </section>
 
       <section class="mt-8">
-        <div class="border-b border-current pb-1">
+        <div class="pb-1 bg-lime-600/10 cardia-top">
           <div class="font-bold text-lg uppercase">
             {{ user.setting?.tentang }}
           </div>
         </div>
-        <div class="pt-4">
+        <div class="cardia-body bg-lime-600/10">
           <div>
             {{ user.tentang }}
           </div>
         </div>
       </section>
-
-      <section class="mt-8">
-        <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">
-            {{ user.setting?.skill }}
-          </div>
-        </div>
-        <div class="pt-4">
-          <div>
-            <div v-for="item in user.skill_1">
-              <span class="font-bold">*</span> {{ item }}
+      <div class="grid grid-cols-2 gap-4 pt-8">
+        <div>
+          <section>
+            <div class="pb-1 bg-amber-600/10 cardia-top-r">
+              <div class="font-bold text-lg uppercase">
+                {{ user.setting?.skill }}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mt-8">
-        <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">
-            {{ user.setting?.skill2 }}
-          </div>
-        </div>
-        <div class="pt-4">
-          <div>
-            <div v-for="item in user.skill_2">
-              <span class="font-bold">*</span> {{ item }}
+            <div class="cardia-body-r bg-amber-600/10">
+              <div>
+                <div v-for="item in user.skill_1">
+                  <span class="font-bold">*</span> {{ item }}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <section class="mt-8">
-        <div class="border-b border-current pb-1">
-          <div class="font-bold text-lg uppercase">
-            {{ user.setting?.pendidikan }}
-          </div>
-        </div>
-        <div class="pt-4">
-          <div>
-            <div v-for="(item, index) in user.pendidikan">
-              {{ index + 1 }}. {{ item }}
+          <section class="mt-4">
+            <div class="pb-1 bg-lime-600/10 cardia-top-r">
+              <div class="font-bold text-lg uppercase">
+                {{ user.setting?.skill2 }}
+              </div>
             </div>
-          </div>
+            <div class="cardia-body-r bg-lime-600/10">
+              <div>
+                <div v-for="item in user.skill_2">
+                  <span class="font-bold">*</span> {{ item }}
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
 
-      <section class="mt-8">
-        <div class="border-b border-current pb-1">
+        <div class="">
+          <section>
+            <div class="pb-1 bg-lime-600/10 cardia-top">
+              <div class="font-bold text-lg uppercase">
+                {{ user.setting?.pendidikan }}
+              </div>
+            </div>
+            <div class="cardia-body bg-lime-600/10">
+              <div class="mb-2">
+                <div class="text-xs">Alamat</div>
+                <div>{{ user.address }}</div>
+              </div>
+
+              <div class="mb-2">
+                <div class="text-xs">Email</div>
+                <div class="font-semibold">{{ user.email }}</div>
+              </div>
+
+              <div class="mb-2">
+                <div class="text-xs">Phone</div>
+                <div class="font-semibold">{{ user.phone }}</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-4">
+            <div class="pb-1 bg-amber-600/10 cardia-top">
+              <div class="font-bold text-lg uppercase">
+                {{ user.setting?.pendidikan }}
+              </div>
+            </div>
+            <div class="cardia-body bg-amber-600/10">
+              <div>
+                <div v-for="(item, index) in user.pendidikan">
+                  {{ index + 1 }}. {{ item }}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="-mt-2">
+        <div class="pb-1 bg-amber-600/10 cardia-top-r">
           <div class="font-bold text-lg uppercase">
             {{ user.setting?.pengalaman }}
           </div>
         </div>
-        <div class="pt-4">
+        <div class="cardia-body-r bg-amber-600/10">
           <div>
             <div v-for="(item, index) in user.pengalaman">
               {{ index + 1 }}. {{ item }}
@@ -226,7 +254,7 @@ const user = ref({
         </div>
       </section>
 
-      <section class="mt-8 hidden">
+      <section class="mt-4 hidden">
         <div class="border-b border-current pb-1">
           <div class="font-bold text-lg uppercase">
             {{ user.setting?.portofolio }}

@@ -16,4 +16,16 @@
   a {
     @apply text-primary font-semibold;
   }
+  .cardia-top {
+    @apply w-fit p-4 rounded-t-xl;
+  }
+  .cardia-body {
+    @apply p-4 rounded-b-xl rounded-r-xl;
+  }
+  .cardia-top-r {
+    @apply w-fit p-4 rounded-t-xl ml-auto;
+  }
+  .cardia-body-r {
+    @apply p-4 rounded-b-xl rounded-l-xl;
+  }
 }
