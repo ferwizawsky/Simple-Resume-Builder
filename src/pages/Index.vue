@@ -12,7 +12,7 @@ import {
 } from "@headlessui/vue";
 
 const opt = useOption();
-const isOpen = ref(true);
+const isOpen = ref(false);
 const pdfELement = ref();
 
 function closeModal() {
@@ -23,11 +23,34 @@ function openModal() {
 }
 
 async function generateReportPrint() {
-  window.print();
+  // window.print();
+  console.log(pdfELement.value);
 }
 
 async function generatePrinter() {
+  // let fm = new FormData();
+  // let tmp = {
+  //   ...user.value,
+  // };
+  // tmp.image = null;
+  // fm.append("content", JSON.stringify(tmp));
+  // if (tmp_img.value) {
+  //   fm.append("image", tmp_img.value);
+  // }
   window.print();
+  // try {
+  //   const response = await axios({
+  //     method: "POST",
+  //     url: `http://localhost:3000/generate-pdf`,
+  //     data: {
+  //       htmlContent: JSON.stringify(document.documentElement.outerHTML),
+  //     },
+  //   });
+
+  //   response.blob();
+  // } catch (error) {
+  // } finally {
+  // }
 }
 
 function generateReport() {
