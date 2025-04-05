@@ -82,52 +82,56 @@ function changePhoto(event) {
 const tmp_img = ref();
 const user = ref({
   setting: {
-    tentang: "Profile",
-    skill: "Hard Skill",
-    skill2: "Soft Skill",
-    pendidikan: "pendidikan",
-    pengalaman: "pengalaman",
-    portofolio: "portofolio",
-    contact: "contact",
+    about: "About Me",
+    skill: "Technical Skills",
+    skill2: "Soft Skills",
+    educational: "Education",
+    experience: "Experience",
+    portofolio: "Portfolio",
+    contact: "Contact Information",
   },
   image: "/profile.jpg",
   first_name: "Ferry",
   last_name: "Syariffuddin",
-  address: "Padang, Sumatera Barat",
+  address: "Bojonegoro, East Java, Indonesia",
   phone: "+62812345678",
   email: "examplemail123@gmail.com",
-  tentang:
-    "Saya adalah lulusan Manajemen Informatika dengan keterampilan analisis data dan kemampuan komunikasi yang baik. Saya paham betul mengenai manajemen dokumen dan keakuratan dalam pekerjaan. Dengan keahlian menggunakan Microsoft Office, saya siap memberikan kontribusi positif pada tim dan organisasi Anda. Terima kasih atas perhatian Anda. ",
-  pekerjaan: "Mahasiswa Manajemen Informatika",
+  about:
+    "A passionate Fullstack Developer with over 4 years of experience in web application development. Skilled in both frontend and backend technologies, with a strong emphasis on clean, maintainable code and efficient solutions. Currently expanding my expertise into game development, combining logic and creativity through pixel art.",
+  pekerjaan: "Fullstack Developer & Aspiring Game Developer",
   skill_1: [
-    "HTML CSS PHP SQL Dasar",
-    "Microsoft Word",
-    "Microsoft Excel",
-    "Microsoft PowerPoint",
+    "Frontend Development: React, Vue.js, Next.js, Nuxt.js",
+    "Backend Development: Laravel, Node.js",
+    "Version Control: Git",
+    // "RESTful API Design & Integration",
+    // "Responsive & Adaptive Web Design",
+    // "Cross-Browser Compatibility Testing",
+    "Office Tools: Microsoft Word, Excel, PowerPoint",
   ],
   skill_2: [
-    "Kemampuan Komunikasi",
-    "Orientasi Pelayanan Pelanggan",
-    "Kemampuan Menyelesaikan Masalah",
-    "Kerjasama Tim",
-    "Manajemen Waktu",
-    "Keahlian Manajemen Dokumen",
-    "Disiplin dan Kehati-hatian",
-    "Etika Profesional",
+    "Clear and Effective Communication",
+    "Customer-Centric Mindset",
+    "Analytical Thinking & Problem-Solving",
+    "Team-Oriented Collaboration",
+    "Strong Time Management Skills",
+    "Efficient Document Handling",
+    "Detail-Oriented and Highly Disciplined",
+    "Strong Work Ethics and Professionalism",
   ],
-  pendidikan: [
-    "Lulus dari Jurusan IPS di SMA N 1 Tanjung mutiara (2021)",
-    "Program Studi D.3 Manajemen Informatika di Politeknik Negeri Padang (Masih mengerjakan Tugas Akhir)",
+  educational: [
+    "Vocational High School in Electronics Engineering, SMK N 2 Bojonegoro, Indonesia",
+    "Bachelor's Degree in Informatics Engineering, Universitas Nahdlatul Ulama Sunan Giri Bojonegoro, Indonesia",
   ],
-  pengalaman: [
-    "Magang di PT KAI, fokus pada Unit Dokumen, dengan jobdesk Rekap Surat, disposisi surat, buat absensi rapat dan sejenisnya.",
-    "Bertanggung jawab dalam pengelolaan dan rekapitulasi surat-menyurat perusahaan.",
-    "Mengasah keterampilan manajemen dokumen dan ketelitian dalam pekerjaan sehari-hari.",
-    "Berpartisipasi aktif dalam kerjasama tim untuk mencapai efisiensi operasional.",
-    "Merancang dan menyampaikan presentasi menggunakan PowerPoint selama studi akademis.",
-    "Menggunakan Excel untuk menganalisis data dalam proyek kuliah.",
+  experience: [
+    "Developed and maintained robust web applications using Laravel and Vue.js, focusing on performance, scalability, and intuitive user interfaces.",
+    "Implemented responsive and visually engaging UI components with Tailwind CSS, significantly enhancing the overall user experience.",
+    "Collaborated closely with cross-functional teams to deliver feature-complete applications on time and within scope.",
+    "Designed and integrated RESTful APIs, optimized database queries, and ensured code reusability to maximize application efficiency.",
+    "Troubleshot and resolved complex technical issues, including third-party API integrations, to extend application capabilities.",
+    "Actively participated in code reviews and provided mentorship and technical support to fellow developers, promoting best practices within the team.",
   ],
-  portofolio: ["Isi terserah"],
+
+  portofolio: ["Portfolio content to be added"],
 });
 </script>
 <template>
@@ -193,14 +197,14 @@ const user = ref({
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              {{ user.setting?.tentang }}
+              {{ user.setting?.about }}
             </button>
           </div>
         </div>
-        <div class="pt-2">
+        <div class="pt-2 text-justify">
           <div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{ user.tentang }}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{ user.about }}
           </div>
         </div>
       </section>
@@ -298,13 +302,13 @@ const user = ref({
               <div
                 class="font-bold text-base lg:text-lg uppercase text-lime-600/70"
               >
-                {{ user.setting?.pendidikan }}
+                {{ user.setting?.educational }}
               </div>
             </div>
             <div class="cardia-body pt-1">
               <div>
                 <div
-                  v-for="(item, index) in user.pendidikan"
+                  v-for="(item, index) in user.educational"
                   class="flex items-start mb-4"
                 >
                   <div
@@ -340,13 +344,13 @@ const user = ref({
                 clip-rule="evenodd"
               ></path>
             </svg>
-            {{ user.setting?.pengalaman }}
+            {{ user.setting?.experience }}
           </button>
         </div>
         <div class="cardia-body-r bg-lime-600/10 text-sm">
           <div>
             <div
-              v-for="(item, index) in user.pengalaman"
+              v-for="(item, index) in user.experience"
               class="flex items-start mb-2"
             >
               <div
